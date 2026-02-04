@@ -11,7 +11,7 @@ st.set_page_config(
     layout="centered"
 )
 
-# ---------------- ADVANCED AESTHETIC CSS ----------------
+# ---------------- ADVANCED ROYAL CSS ----------------
 st.markdown("""
 <style>
 /* Global Font Reset to Times New Roman */
@@ -61,7 +61,7 @@ st.markdown("""
     border-radius: 15px !important;
     padding: 20px !important;
     font-size: 1.2rem !important;
-    backdrop-filter: blur(10px);
+    # backdrop-filter: blur(10px);
 }
 
 /* Royal Buttons */
@@ -83,43 +83,48 @@ div.stButton > button:hover {
     transform: translateY(-2px);
 }
 
-/* Corrected Sentiment Cards with Jewel Tones */
+/* --- THE ETCHED BOX DESIGN (Per Screenshot) --- */
 .result-card {
-    padding: 45px;
-    border-radius: 20px;
+    padding: 60px 20px;
+    border-radius: 25px;
     text-align: center;
-    font-size: 2.8rem;
-    font-weight: bold;
-    letter-spacing: 5px;
-    margin: 25px 0;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.6), inset 0 0 20px rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1);
+    font-size: 3.5rem;
+    font-weight: 700;
+    letter-spacing: 8px;
+    margin: 30px 0;
+    background: #1a1a1a; /* Dark charcoal base */
+    border: 1.5px solid rgba(197, 160, 89, 0.4); /* Thin gold border */
+    box-shadow: 0 15px 35px rgba(0,0,0,0.8);
 }
 
 .positive {
-    background: linear-gradient(145deg, #002200, #004400);
     color: #4ade80;
-    border-color: #006400;
+    text-shadow: 0 0 20px rgba(74, 222, 128, 0.3);
 }
 
 .negative {
-    background: linear-gradient(145deg, #220000, #440000);
     color: #f87171;
-    border-color: #8b0000;
+    text-shadow: 0 0 20px rgba(248, 113, 113, 0.3);
 }
 
 .neutral {
-    background: linear-gradient(145deg, #1a1a1a, #2a2a2a);
     color: #f1d384;
-    border-color: #8a6d3b;
+    text-shadow: 0 0 20px rgba(241, 211, 132, 0.3);
 }
 
 .confidence-text {
     text-align: center;
     color: #c5a059;
-    font-size: 1.1rem;
-    letter-spacing: 2px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    letter-spacing: 3px;
+    text-transform: uppercase;
     margin-top: 15px;
+}
+
+/* Progress Bar Customization */
+div[data-testid="stProgress"] > div > div > div > div {
+    background-color: #c5a059 !important;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -143,7 +148,9 @@ st.markdown("<p class='sub-title'>Imperial Linguistic Intelligence</p>", unsafe_
 tweet = st.text_area("", height=150, placeholder="Transcribe the message for analysis...")
 
 if st.button("Execute Analysis"):
-    if not tweet.strip():
+    if model is None or vectorizer is None:
+        st.error("Imperial Archives (Model Files) not found in the /model directory.")
+    elif not tweet.strip():
         st.error("The archive requires a proclamation (text input).")
     else:
         with st.spinner("Decoding Dialect..."):
@@ -154,11 +161,11 @@ if st.button("Execute Analysis"):
             max_prob = probs.max()
             prediction = model.classes_[probs.argmax()]
 
-        # ---------------- CORRECTED RESULTS ----------------
+        # ---------------- MATCHING IMAGE DESIGN ----------------
         if max_prob < 0.6:
             st.markdown("<div class='result-card neutral'>⚜️ NEUTRAL ⚜️</div>", unsafe_allow_html=True)
         elif prediction.lower() == "positive":
-            st.markdown("<div class='result-card positive'>🌿 POSITIVE 🌿</div>", unsafe_allow_html=True)
+            st.markdown("<div class='result-card positive'>🕊️ POSITIVE 🕊️</div>", unsafe_allow_html=True)
         elif prediction.lower() == "negative":
             st.markdown("<div class='result-card negative'>🥀 NEGATIVE 🥀</div>", unsafe_allow_html=True)
 
@@ -166,4 +173,4 @@ if st.button("Execute Analysis"):
         st.progress(float(max_prob))
 
 # ---------------- FOOTER ----------------
-st.markdown("<br><br><p style='text-align:center; color:#333; font-style: italic;'>Proprietary Machine Intelligence • Est. 2026</p>", unsafe_allow_html=True)
+st.markdown("<br><br><p style='text-align:center; color:#555; font-style: italic;'>Proprietary Machine Intelligence • Est. 2026</p>", unsafe_allow_html=True)
