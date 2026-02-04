@@ -84,38 +84,38 @@ div.stButton > button:hover {
 
 /* --- REFINED SMALL ETCHED BOX DESIGN --- */
 .result-card {
-    padding: 25px 15px; /* Reduced padding for smaller size */
+    padding: 20px 10px; 
     border-radius: 15px;
     text-align: center;
-    font-size: 2rem;    /* Reduced font size for sleekness */
+    font-size: 1.8rem;    
     font-weight: 700;
-    letter-spacing: 10px;
+    letter-spacing: 8px;
     margin: 20px auto;
-    max-width: 500px;   /* Constrains the width */
+    max-width: 400px;   /* Smaller width for a sleek look */
     background: #1a1a1a; 
-    border: 1px solid rgba(197, 160, 89, 0.35);
+    border: 1px solid rgba(197, 160, 89, 0.3);
     box-shadow: 0 10px 30px rgba(0,0,0,0.8);
 }
 
 .positive {
     color: #4ade80;
-    text-shadow: 0 0 15px rgba(74, 222, 128, 0.2);
+    text-shadow: 0 0 10px rgba(74, 222, 128, 0.2);
 }
 
 .negative {
     color: #f87171;
-    text-shadow: 0 0 15px rgba(248, 113, 113, 0.2);
+    text-shadow: 0 0 10px rgba(248, 113, 113, 0.2);
 }
 
 .neutral {
     color: #f1d384;
-    text-shadow: 0 0 15px rgba(241, 211, 132, 0.2);
+    text-shadow: 0 0 10px rgba(241, 211, 132, 0.2);
 }
 
 .confidence-text {
     text-align: center;
     color: #c5a059;
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: bold;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -161,7 +161,7 @@ if st.button("Execute Analysis"):
             max_prob = probs.max()
             prediction = model.classes_[probs.argmax()]
 
-        # ---------------- RESULTS (Emojis Removed) ----------------
+        # ---------------- RESULTS (Emojis Removed & Compact) ----------------
         if max_prob < 0.6:
             st.markdown("<div class='result-card neutral'>NEUTRAL</div>", unsafe_allow_html=True)
         elif prediction.lower() == "positive":
@@ -173,4 +173,5 @@ if st.button("Execute Analysis"):
         st.progress(float(max_prob))
 
 # ---------------- FOOTER ----------------
-st.markdown("<br><br><p style='text-align:center; color:#555; font-style: italic;'>Proprietary Machine Intelligence • Est. 2026</p>", unsafe_allow_html=True)
+st.markdown("<br><br><p style='text-align:center; color:#555; font-style: italic; margin-bottom: 0px;'>Proprietary Machine Intelligence • Est. 2026</p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align:center; color:#8a6d3b; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase;'>Created by Pritam Dash</p>", unsafe_allow_html=True)
