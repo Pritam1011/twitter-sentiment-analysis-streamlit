@@ -37,52 +37,6 @@ The system classifies input text into Positive, Negative, or Neutral sentiment b
 
 ---
 
-## Project Structure
-
-ml_project/
-├── data/
-│   ├── twitter_training.csv
-│   └── twitter_validation.csv
-│
-├── model/
-│   ├── sentiment_model.pkl
-│   └── vectorizer.pkl
-│
-├── app.py
-├── preprocess.py
-├── train_model.py
-├── requirements.txt
-├── README.md
-└── .gitignore
-
----
-
-## How to Run the Project
-
-### 1. Install dependencies
-
-pip install -r requirements.txt
-
-### 2. Train the model
-
-python train_model.py
-
-This will generate:
-- sentiment_model.pkl
-- vectorizer.pkl
-
-inside the model/ folder.
-
----
-
-### 3. Run the Streamlit app
-
-streamlit run app.py
-
-Then open the URL shown in the terminal (usually http://localhost:8501).
-
----
-
 ## Example Test Inputs
 
 Positive:
