@@ -4,14 +4,12 @@ import os
 import time
 from preprocess import clean_text
 
-# ---------------- PAGE CONFIG ----------------
 st.set_page_config(
     page_title="The Sentinel | Royal AI",
     page_icon="⚜️",
     layout="centered"
 )
 
-# ---------------- ADVANCED ROYAL CSS ----------------
 st.markdown("""
 <style>
 /* Global Font Reset to Times New Roman */
@@ -129,7 +127,6 @@ div[data-testid="stProgress"] > div > div > div > div {
 </style>
 """, unsafe_allow_html=True)
 
-# ---------------- LOGIC ----------------
 MODEL_PATH = "model/sentiment_model.pkl"
 VECT_PATH = "model/vectorizer.pkl"
 
@@ -141,7 +138,6 @@ def load_assets():
 
 model, vectorizer = load_assets()
 
-# ---------------- UI ----------------
 st.markdown("<h1 class='gold-title'>The Sentinel</h1>", unsafe_allow_html=True)
 st.markdown("<p class='sub-title'>Imperial Linguistic Intelligence</p>", unsafe_allow_html=True)
 
@@ -161,7 +157,6 @@ if st.button("Execute Analysis"):
             max_prob = probs.max()
             prediction = model.classes_[probs.argmax()]
 
-        # ---------------- RESULTS (Emojis Removed & Compact) ----------------
         if max_prob < 0.6:
             st.markdown("<div class='result-card neutral'>NEUTRAL</div>", unsafe_allow_html=True)
         elif prediction.lower() == "positive":
@@ -172,6 +167,4 @@ if st.button("Execute Analysis"):
         st.markdown(f"<p class='confidence-text'>CONFIDENCE SCORE: {max_prob:.2%}</p>", unsafe_allow_html=True)
         st.progress(float(max_prob))
 
-# ---------------- FOOTER ----------------
-st.markdown("<br><br><p style='text-align:center; color:#555; font-style: italic; margin-bottom: 0px;'>Proprietary Machine Intelligence • Est. 2026</p>", unsafe_allow_html=True)
 st.markdown("<p style='text-align:center; color:#8a6d3b; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase;'>Created by Pritam Dash</p>", unsafe_allow_html=True)
