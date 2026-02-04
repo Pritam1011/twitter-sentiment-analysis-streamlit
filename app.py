@@ -61,7 +61,6 @@ st.markdown("""
     border-radius: 15px !important;
     padding: 20px !important;
     font-size: 1.2rem !important;
-    # backdrop-filter: blur(10px);
 }
 
 /* Royal Buttons */
@@ -83,43 +82,44 @@ div.stButton > button:hover {
     transform: translateY(-2px);
 }
 
-/* --- THE ETCHED BOX DESIGN (Per Screenshot) --- */
+/* --- REFINED SMALL ETCHED BOX DESIGN --- */
 .result-card {
-    padding: 60px 20px;
-    border-radius: 25px;
+    padding: 25px 15px; /* Reduced padding for smaller size */
+    border-radius: 15px;
     text-align: center;
-    font-size: 3.5rem;
+    font-size: 2rem;    /* Reduced font size for sleekness */
     font-weight: 700;
-    letter-spacing: 8px;
-    margin: 30px 0;
-    background: #1a1a1a; /* Dark charcoal base */
-    border: 1.5px solid rgba(197, 160, 89, 0.4); /* Thin gold border */
-    box-shadow: 0 15px 35px rgba(0,0,0,0.8);
+    letter-spacing: 10px;
+    margin: 20px auto;
+    max-width: 500px;   /* Constrains the width */
+    background: #1a1a1a; 
+    border: 1px solid rgba(197, 160, 89, 0.35);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
 }
 
 .positive {
     color: #4ade80;
-    text-shadow: 0 0 20px rgba(74, 222, 128, 0.3);
+    text-shadow: 0 0 15px rgba(74, 222, 128, 0.2);
 }
 
 .negative {
     color: #f87171;
-    text-shadow: 0 0 20px rgba(248, 113, 113, 0.3);
+    text-shadow: 0 0 15px rgba(248, 113, 113, 0.2);
 }
 
 .neutral {
     color: #f1d384;
-    text-shadow: 0 0 20px rgba(241, 211, 132, 0.3);
+    text-shadow: 0 0 15px rgba(241, 211, 132, 0.2);
 }
 
 .confidence-text {
     text-align: center;
     color: #c5a059;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: bold;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
     text-transform: uppercase;
-    margin-top: 15px;
+    margin-top: 10px;
 }
 
 /* Progress Bar Customization */
@@ -156,21 +156,4 @@ if st.button("Execute Analysis"):
         with st.spinner("Decoding Dialect..."):
             time.sleep(0.8)
             cleaned = clean_text(tweet)
-            vector = vectorizer.transform([cleaned])
-            probs = model.predict_proba(vector)[0]
-            max_prob = probs.max()
-            prediction = model.classes_[probs.argmax()]
-
-        # ---------------- MATCHING IMAGE DESIGN ----------------
-        if max_prob < 0.6:
-            st.markdown("<div class='result-card neutral'>⚜️ NEUTRAL ⚜️</div>", unsafe_allow_html=True)
-        elif prediction.lower() == "positive":
-            st.markdown("<div class='result-card positive'>🕊️ POSITIVE 🕊️</div>", unsafe_allow_html=True)
-        elif prediction.lower() == "negative":
-            st.markdown("<div class='result-card negative'>🥀 NEGATIVE 🥀</div>", unsafe_allow_html=True)
-
-        st.markdown(f"<p class='confidence-text'>CONFIDENCE SCORE: {max_prob:.2%}</p>", unsafe_allow_html=True)
-        st.progress(float(max_prob))
-
-# ---------------- FOOTER ----------------
-st.markdown("<br><br><p style='text-align:center; color:#555; font-style: italic;'>Proprietary Machine Intelligence • Est. 2026</p>", unsafe_allow_html=True)
+            vector = vectorizer.
