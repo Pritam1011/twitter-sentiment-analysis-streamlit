@@ -156,4 +156,21 @@ if st.button("Execute Analysis"):
         with st.spinner("Decoding Dialect..."):
             time.sleep(0.8)
             cleaned = clean_text(tweet)
-            vector = vectorizer.
+            vector = vectorizer.transform([cleaned])
+            probs = model.predict_proba(vector)[0]
+            max_prob = probs.max()
+            prediction = model.classes_[probs.argmax()]
+
+        # ---------------- RESULTS (Emojis Removed) ----------------
+        if max_prob < 0.6:
+            st.markdown("<div class='result-card neutral'>NEUTRAL</div>", unsafe_allow_html=True)
+        elif prediction.lower() == "positive":
+            st.markdown("<div class='result-card positive'>POSITIVE</div>", unsafe_allow_html=True)
+        elif prediction.lower() == "negative":
+            st.markdown("<div class='result-card negative'>NEGATIVE</div>", unsafe_allow_html=True)
+
+        st.markdown(f"<p class='confidence-text'>CONFIDENCE SCORE: {max_prob:.2%}</p>", unsafe_allow_html=True)
+        st.progress(float(max_prob))
+
+# ---------------- FOOTER ----------------
+st.markdown("<br><br><p style='text-align:center; color:#555; font-style: italic;'>Proprietary Machine Intelligence • Est. 2026</p>", unsafe_allow_html=True)
