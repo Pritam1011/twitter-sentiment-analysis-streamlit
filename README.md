@@ -40,7 +40,6 @@ The system classifies input text into Positive, Negative, or Neutral sentiment b
 ## Project Structure
 
 ml_project/
-│
 ├── data/
 │   ├── twitter_training.csv
 │   └── twitter_validation.csv
