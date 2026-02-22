@@ -1,63 +1,74 @@
-# Twitter Sentiment Analysis Dashboard
+# 🐦 Twitter Sentiment Analysis Dashboard
 
-An interactive Streamlit-based web application that performs sentiment analysis on Twitter text using Natural Language Processing (NLP) and Machine Learning techniques.
-
-The system classifies input text into Positive, Negative, or Neutral sentiment based on model confidence.
+An interactive Streamlit-based web application that performs sentiment analysis on text using Natural Language Processing (NLP) and Machine Learning techniques.
 
 ---
 
-## Features
+## 🚀 Live Demo
 
-- Text preprocessing using NLTK  
-- Sentiment classification using Machine Learning  
-- TF-IDF based feature extraction  
-- Interactive and responsive Streamlit dashboard  
-- Confidence-based Neutral sentiment handling  
-- Trained model and vectorizer saved for reuse  
+🔗 **Click here to try the application:**  
+👉 https://twitter-sentiment-analysis-app-ep9sde2anqkwdojfqkesvo.streamlit.app/
 
 ---
 
-## Tech Stack
+## 🛠 Tech Stack
 
-- Python  
-- Pandas  
-- Scikit-learn  
-- NLTK  
-- Streamlit  
-
----
-
-## Model Details
-
-- Vectorization: TF-IDF (Term Frequency–Inverse Document Frequency)  
-- Classifier: Logistic Regression  
-- Evaluation Accuracy: ~81%  
-- Neutral Logic:  
-  If prediction confidence < 0.6, sentiment is shown as Neutral  
+- Python
+- Pandas
+- Scikit-learn
+- NLTK (Natural Language Toolkit)
+- Streamlit
+- Joblib (Model Serialization)
 
 ---
 
-## Example Test Inputs
+## ✨ Features
 
-Positive:
-I absolutely love this phone! Amazing performance.
-
-Negative:
-This product is terrible and completely useless.
-
-Neutral:
-The phone was delivered yesterday.
-
----
-
-## Notes
-
-- The venv/ folder is excluded using .gitignore  
-- Model files are loaded using joblib  
-- Designed for both local execution and Streamlit Cloud deployment  
+- Text preprocessing using NLTK
+- TF-IDF based feature extraction
+- Logistic Regression classifier
+- Real-time sentiment prediction
+- Interactive and responsive Streamlit dashboard
+- Confidence-based Neutral sentiment handling
+- Pre-trained model and vectorizer saved for reuse
 
 ---
 
-## License
+## 📂 Project Structure
 
-This project is for educational and learning purposes.
+- `app.py` – Main Streamlit application
+- `preprocess.py` – Text preprocessing logic
+- `train_model.py` – Model training script
+- `model/` – Saved ML model and vectorizer
+- `data/` – Dataset files
+- `requirements.txt` – Python dependencies
+- `.gitignore` – Ignored files and folders
+
+---
+
+## 🤖 Model Details
+
+- **Vectorization:** TF-IDF (Term Frequency – Inverse Document Frequency)
+- **Algorithm:** Logistic Regression
+- **Evaluation Accuracy:** ~81%
+- **Output Classes:** Positive, Negative, Neutral
+
+---
+
+## 🧠 How It Works
+
+1. User enters text in the Streamlit interface.
+2. Text is cleaned and preprocessed.
+3. Text is converted into numerical form using TF-IDF.
+4. The trained Logistic Regression model predicts sentiment.
+5. Result is displayed with confidence score.
+
+---
+
+## 📦 Installation (Run Locally)
+
+```bash
+git clone https://github.com/Pritam1011/twitter-sentiment-analysis-streamlit.git
+cd twitter-sentiment-analysis-streamlit
+pip install -r requirements.txt
+streamlit run app.py
